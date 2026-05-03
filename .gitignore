@@ -1,0 +1,67 @@
+# Compiled object files
+*.o
+*.obj
+
+# Static libraries
+*.a
+*.lib
+
+# Shared libraries
+*.so
+*.dll
+*.dylib
+
+# Executables
+*.exe
+*.out
+*.app
+
+# Debug files
+*.dSYM/
+*.su
+*.idb
+*.pdb
+
+# Build directories
+build/
+bin/
+out/
+
+# CMake files
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile
+
+# Autotools files
+configure
+config.status
+config.log
+aclocal.m4
+autom4te.cache/
+
+# Temporary files
+*.tmp
+*.temp
+
+# Logs
+*.log
+
+# VS Code
+.vscode/
+
+# Code::Blocks
+*.layout
+*.depend
+*.cbp
+
+# Eclipse CDT
+.project
+.cproject
+
+# CLion / JetBrains
+.idea/
+
+# OS files
+.DS_Store
+Thumbs.db
