@@ -1,0 +1,163 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+typedef struct NODE {
+    int x;
+    struct NODE *next;
+} NODE;
+
+NODE *start = NULL, *ptr, *temp;
+int totalElements = 0;
+
+void insertAtBegin(int x) {
+    temp = start;
+    ptr = (NODE*)malloc(sizeof(NODE));
+    ptr->x = x;
+    ptr->next = temp;
+    start = ptr;
+    totalElements++;
+}
+
+void insertAtEnd(int x) {
+    ptr = (NODE*)malloc(sizeof(NODE));
+    ptr->x = x;
+
+    if (start == NULL) {
+        start = ptr;
+        ptr->next = NULL;
+    }
+
+    else {
+        for (temp = start; temp->next != NULL; temp = temp->next);
+
+        temp->next = ptr;
+        ptr->next = NULL;
+    }
+
+    totalElements++;
+}
+
+void display() {
+
+    if (start == NULL) {
+        printf("No node to display.");
+        return;
+    }
+
+    for (temp = start; temp != NULL; temp = temp->next)
+        printf("%d ", temp->x);
+
+    printf("\n");
+}
+
+void delete(int index) {
+
+    if (start == NULL) {
+        printf("No node to delete.");
+    }
+
+    temp = start;
+
+    if (index == 0) {
+        start = temp->next;
+
+        printf("The deleted item is: \"%d\"", temp->x);
+
+        free(temp);
+
+        totalElements--;
+    }
+
+    else {
+
+        for (int i = 0; i < index; i++) {
+            ptr = temp;
+            temp = temp->next;
+        }
+
+        ptr->next = temp->next;
+
+        printf("The deleted item is: \"%d\"", temp->x);
+
+        free(temp);
+
+        totalElements--;
+    }
+}
+
+int main() {
+
+    int index, x, choice;
+
+    while (1) {
+
+        printf("\n************************************\n");
+
+        printf("1> INSERT AT BEGINNING\n");
+        printf("2> INSERT AT END\n");
+        printf("3> DISPLAY\n");
+        printf("4> DELETE\n");
+        printf("5> EXIT\n");
+
+        printf("************************************\n");
+
+        printf("Enter your choice: ");
+
+        if (scanf("%d", &choice) != 1)
+            break;
+
+        switch (choice) {
+
+            case 1:
+
+                printf("Enter the element: ");
+                scanf("%d", &x);
+
+                insertAtBegin(x);
+
+                break;
+
+            case 2:
+
+                printf("Enter the element: ");
+                scanf("%d", &x);
+
+                insertAtEnd(x);
+
+                break;
+
+            case 3:
+
+                display();
+
+                break;
+
+            case 4:
+
+                printf("Enter the index to delete: ");
+                scanf("%d", &index);
+
+                if (index >= 0 && index < totalElements)
+                    delete(index);
+
+                else
+                    printf("No such index exist.");
+
+                break;
+
+            case 5:
+
+                printf("\nGoodbye...\n");
+
+                return 0;
+
+            default:
+
+                printf("\nInvalid choice!\n");
+
+                break;
+        }
+    }
+
+    return 0;
+}
